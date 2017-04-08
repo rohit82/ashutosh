@@ -1,0 +1,94 @@
+//User_master
+
+create table User_Master 
+(UserId varchar2(6),
+UserName varchar2(15) NOT NULL,
+UserPassword varchar2(50) NOT NULL,
+UserType varchar2(10) NOT NULL,
+Constraint pk_user Primary key(UserId));
+
+insert into User_Master values('100001','Ruby123','ruby123','employee');
+insert into User_Master values('202','riya@capge.com','riya23','admin');
+insert into User_Master values('203','saras@capge.com','saras123','employee');
+insert into User_Master values('204','vandu@capge.com','vandu123','employee');
+insert into User_Master values('205','shikha@capge.com','shikha123','employee');
+insert into User_Master values('206','ruchi@capge.com','ruchi123','employee');
+insert into User_Master values('207','ranju@capge.com','ranju123','admin');
+insert into User_Master values('208','payal@capge.com','payal123','employee');
+insert into User_Master values('209','pooja@capge.com','pooja123','employee');
+insert into User_Master values('210','anita@capge.com','anita123','employee');
+
+
+
+//Department
+
+
+
+
+Create table Department
+(Dept_ID int,
+Dept_Name varchar2(50),
+Constraint pk_dept primary key(Dept_ID));
+
+
+insert into department values(1001,'Java');
+insert into department values(1002,'.Net');
+insert into department values(1003,'Ruby On Rails');
+insert into department values(1004,'Testing');
+insert into department values(1005,'C++');
+insert into department values(1006,'Python');
+
+
+//Grade_master
+
+
+create table Grade_Master
+(Grade_Code varchar2(2),
+Description varchar2(40),
+Min_Salary int,
+Max_Salary int,
+Constraint pk_grade primary key(grade_code));
+
+insert into grade_master values('M1','Associate Software Developer',20000,30000);
+insert into grade_master values('M2','Senior Software Developer',30001,50000);
+insert into grade_master values('M3','Associate Software Tester',20000,25000);
+insert into grade_master values('M4','Senior Software Tester',25001,37000);
+insert into grade_master values('M5','Team Lead',75001,100000);
+insert into grade_master values('M6','Manager',150001,250000);
+insert into grade_master values('M7','Senior Manager',350000,700000);
+
+
+
+
+//Employee
+
+create table Employee
+(Emp_ID varchar2(6),
+Emp_First_Name varchar2(25),
+Emp_Last_Name VARCHAR2(25),
+Emp_Date_of_Birth Date,
+Emp_Date_of_Joining Date,
+Emp_Dept_ID int  NOT NULL,
+Emp_Grade varchar2(2),
+Emp_Basic int not null,
+Emp_Designation varchar2(50),
+Emp_Gender varchar2(1),
+Emp_Marital_Status varchar2(1),
+Emp_Home_Address varchar2(100),
+Emp_Contact_num varchar2(15),
+Constraint pk_emp Primary key(Emp_id),
+Constraint fk_grade FOREIGN KEY(Emp_Grade) REFERENCES Grade_Master(Grade_Code), 
+Constraint fk_dept FOREIGN KEY(Emp_Dept_ID) REFERENCES Department(Dept_ID),
+Constraint fk_user FOREIGN KEY(Emp_ID) REFERENCES User_Master(UserId));
+
+
+insert into employee values(100001,'Niraj','Soni','26-OCT-1994',sysdate,1001,'M1',25000,'Associate','M','S','Mumbai','9594806229');
+  
+
+insert into employee values(200001,'Kasbe','Prats','20-JUN-1994',sysdate,1003,'M3',24500,'Developer','M','M','Mumbai','9594806111');
+
+
+
+            
+
+
